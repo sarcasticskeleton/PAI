@@ -1,0 +1,15 @@
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<p18f4550.h>
+
+void main(void)
+{
+	int  sum;
+	sum =0;
+	sum= 0x05+0X02;
+	TRISD=0;
+	PORTD=sum;
+
+}
