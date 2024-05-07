@@ -1,0 +1,58 @@
+A)  Multiplication
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <pic18f452.h>     //multiplication using successive addition
+void main(void) {
+    //static int v_mem[] = 0x55;       @0x0005
+    int num1, num2;
+    int result,i;
+       result = 0;
+    num1 = 0x23;
+    num2 = 0x10;
+    
+    for(i=1; i<=num2; i++)
+    {
+        result = result + num1;
+    }
+    TRISB =0;
+    PORTB = result;
+        TRISC=0;
+    PORTC=num1*num2;
+}
+
+
+
+
+B) Division
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <pic18f452.h>//Division using successive sustraction
+void main(void) {
+    //static int v_mem[] = 0x55;       @0x0005
+    int dividend, divisor,quotient;
+    int result,i;    
+    dividend = 0x0E;
+     divisor= 0x04;
+    result = dividend;
+    quotient=0;
+    while(1)
+    {
+        if(divisor==0)
+            result=0;
+        else if(result<divisor)
+            break;
+        else
+        {
+            result = result - divisor;
+            quotient=quotient+1;
+        }
+    }
+    TRISA=0;
+    PORTA=result; // remainder
+    TRISB =0;
+    PORTB = quotient;   //quotient
+    TRISC=0;
+    PORTC=dividend/divisor;
+}
